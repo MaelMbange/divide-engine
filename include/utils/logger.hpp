@@ -39,7 +39,6 @@ namespace divide_engine{
     /**
      * @brief Logger class for logging messages with optional timestamps and log levels.
      * It is a singleton class.
-     * @var logger is a shared pointer to the logger instance.
      */
     class Logger{
         private:
