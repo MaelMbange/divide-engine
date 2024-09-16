@@ -16,6 +16,14 @@ std::string LogLevel::name() const {
             return "[WARNING]";
         case Level::ERROR:
             return "[ERROR]";
+        case Level::SUCCESS:
+            return "[SUCCESS]";
+        case Level::FINISHED:
+            return "[FINISHED]";
+        case Level::TERMINATED:
+            return "[TERMINATED]";
+        case Level::CLOSED:
+            return "[CLOSED]";
         default:
             return "[UNKNOWN]";
     }

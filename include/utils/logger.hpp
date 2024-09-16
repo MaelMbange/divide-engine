@@ -15,9 +15,13 @@ namespace divide_engine{
      */
     struct LogLevel {
         enum class Level{
-            INFO,
-            WARNING,
-            ERROR,
+         INFO,
+         WARNING,
+         ERROR,
+         SUCCESS,
+         FINISHED,
+         TERMINATED,
+         CLOSED,
         };
 
         /**
