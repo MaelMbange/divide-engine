@@ -21,9 +21,18 @@ std::string LogLevel::name() const {
     }
 }
 
+std::shared_ptr<Logger> Logger::logger = nullptr;
+
 Logger::Logger(const bool show_date, const bool show_date_first, std::ostream& stream) : stream(stream), show_date_first(show_date_first), show_date(show_date){}
 
-std::string Logger::get_current_time_as_wstring() {
+std::shared_ptr<Logger> Logger::get_instance(const bool show_date, const bool show_date_first, std::ostream &stream) {
+    if(logger == nullptr){
+        logger = std::shared_ptr<Logger>(new Logger(show_date, show_date_first, stream));
+    }
+    return logger;
+}
+
+std::string Logger::get_current_time_as_string() {
     std::ostringstream oss;
     oss << std::chrono::system_clock::now();
     return oss.str();
@@ -34,9 +43,9 @@ void Logger::log(std::string&& message, const LogLevel& message_level) const {
 
     if(this->show_date) {
         if(this->show_date_first) {
-            message2log = get_current_time_as_wstring() + " : " + message_level.name() + " " + message;
+            message2log = get_current_time_as_string() + " : " + message_level.name() + " " + message;
         } else {
-            message2log = message_level.name() + " " + message + " : " + get_current_time_as_wstring();
+            message2log = message_level.name() + " " + message + " : " + get_current_time_as_string();
         }
     }else {
         message2log = message_level.name() + " " + message;
@@ -49,9 +58,9 @@ void Logger::log(const std::string& message, const LogLevel& message_level) cons
 
     if(this->show_date) {
         if(this->show_date_first) {
-            message2log = get_current_time_as_wstring() + " : " + message_level.name() + " " + message;
+            message2log = get_current_time_as_string() + " : " + message_level.name() + " " + message;
         } else {
-            message2log = message_level.name() + " " + message + " : " + get_current_time_as_wstring();
+            message2log = message_level.name() + " " + message + " : " + get_current_time_as_string();
         }
     }else {
         message2log = message_level.name() + " " + message;

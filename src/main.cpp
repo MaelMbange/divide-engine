@@ -1,6 +1,7 @@
 #include <fstream>
 #include "utils/logger.hpp"
 #include <GLFW/glfw3.h>
+#include <window.hpp>
 
 using namespace divide_engine;
 
@@ -40,8 +41,15 @@ int main()
     // glfwTerminate();
     // return 0;
 
-    Logger logger(true,true);
-    logger.log("Hello world");
+    const auto logger = Logger::get_instance(true,true);
+    logger->log("Hello world");
+
+
+    // if (!glfwInit()) {
+    //     logger.log("GLFW could not be initialized", LogLevel(LogLevel::Level::ERROR));
+    // }
+    //
+    // Window window;
 
     return 0;
 }
