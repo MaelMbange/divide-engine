@@ -1,11 +1,11 @@
-#include <fstream>
-#include "utils/logger.hpp"
-#include <GLFW/glfw3.h>
 #include <window.hpp>
+#include <GLFW/glfw3.h>
+#include "utils/logger.hpp"
 
 using namespace divide_engine;
-
 using namespace std::string_literals;
+
+
 int main()
 {
     // GLFWwindow* window;
@@ -39,17 +39,18 @@ int main()
     // }
     //
     // glfwTerminate();
-    // return 0;
+    if (!glfwInit())
+        return -1;
 
-    const auto logger = Logger::get_instance(true,true);
-    logger->log("Hello world");
-
-
-    // if (!glfwInit()) {
-    //     logger.log("GLFW could not be initialized", LogLevel(LogLevel::Level::ERROR));
-    // }
-    //
-    // Window window;
+    Window window(640, 480, "Divide");
+    // window.set_resizable(false);
+    // window.set_visible(false);
+    // window.set_decorated(false);
+    // window.set_focused(false);
+    // window.set_auto_iconify(true);
+    // window.set_floating(false);
+    window.open();
+    glfwTerminate();
 
     return 0;
 }
